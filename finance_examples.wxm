@@ -1,0 +1,239 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: title   start ]
+Finance Package Examples
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(finance);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Basics
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculate the distance between 2 dates, assuming 360 days years,
+30 days months.
+Sintax "days360(year1,month1,day1,year2,month2,day2)"
+An example to understand the format 
+    "days360(2008,12,16,2007,3,25)".
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+days360(2008,12,16,2007,3,25);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the Future value of a Present one given a certain interest rate.
+The sintax is "fv(rate,PV,num)", 
+Being
+    "rate"  the Interest Rate.
+    "PV"    the Present Value.
+    "num"   the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fv(0.12,1000,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the Present value of a Future one given a certain interest rate.
+The sintax is "pv(rate,FV,num)", 
+Being
+    "rate"  the Interest Rate.
+    "FV"    the Future Value.
+    "num"   the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+pv(0.12,1000,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Plot the cash flow.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+graph_flow([-5000,-3000,800,1300,1500,2000])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Annuities and Amortization Tables
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the annuity knowing the present value (like an ammount),
+it is a constant and periodic payment.
+The sintax is "annuity_pv(rate,PV,num)"
+Being
+    "rate"  the Interest Rate.
+    "PV"    the Present Value.
+    "num"   the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+annuity_pv(0.12,5000,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the annuity knowing the desired value (future value),
+in a constant and periodic payment.
+The sintax is "annuity_fv(rate,FV,num)"
+Being
+    "rate"  the Interest Rate.
+    "FV"    the Future Value.
+    "num"   the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+annuity_fv(0.12,65000,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Annuities could be calculates for analytic values for rate (rate), present value (PV)
+and number of periods (num).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+annuity_pv(rate,PV,num);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the annuity knowing the present value (like an ammount),
+in a growing periodic payment.
+The sintax is "geo_annuity_pv(rate,growing_rate,PV,num)".
+Being
+    "rate"          the Interest Rate.
+    "growing_rate"  the growing rate.
+    "PV"            the Present Value.
+    "num"           the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geo_annuity_pv(0.14,0.05,5000,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+We can calculate the annuity knowing the desired value (future value),
+in a growing periodic payment.
+The sintax is "geo_annuity_fv(rate,growing_rate,FV,num)".
+Being
+    "rate"          the Interest Rate.
+    "growing_rate"  the growing rate.
+    "FV"            the Future Value.
+    "num"           the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geo_annuity_fv(0.14,0.05,5000,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The amortization table determinated by a specific rate could be found by
+"amortization(rate,Ammount,num)".
+Being
+    "rate"      the interest rate.
+    "Ammount"   the Ammount value.
+    "num"       the number of periods.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+amortization(0.05,56000,12)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The amortization table determinated by a specific rate and with growing payment
+could be found by "arit_amortization(rate,increment,Ammount,num)".
+Notice that the payment is not constant, it presents
+an arithmetic growing, increment is then the difference between two
+consecutive rows in the "Payment" column.
+The parameters are
+    "rate"      the interest rate.
+    "increment" the increment.
+    "Ammount"   the Ammount value.
+    "num"       number of periods
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arit_amortization(0.05,1000,56000,12)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The amortization table determinated by rate, Ammount,
+and number of periods could be found by "geo_amortization(rate,growing_rate,Ammount,num)".
+Notice that the payment is not constant, it presents
+a geometric growing, growin_rate is then the cocient between two
+consecutive rows in the "Payment" column.
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geo_amortization(0.05,0.03,56000,12)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The table that represent the values in a constant an periodic
+saving could be found by "saving(rate,Ammount,num)".
+Ammount represent the desired quantity and num the number
+of periods to save.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+saving(0.15,12000,15)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Projects' Evaluation
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculate de present value of a value series to evaluate the viability in a
+project.
+Sintax "npv(rate,flowValues)".
+Being
+    "rate"      is the interest rate.
+    "flowValues"are the values for each period.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+npv(0.25,[100,500,323,124,300]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+IRR (Internal Rate of Return), is the value of rate wich makes Net Present Value
+zero.
+Sintax "irr(flowValues,I0)".
+Being
+    "flowValues"    are the values for each period (larger than 0).
+    "I0"            is the value for the zero period.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+res:irr([-5000,0,800,1300,1500,2000],0)$
+rhs(res[1][1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculate the ratio Benefit/Cost, Benefit is the Net Present Value (NPV)
+of the inputs, and Cost is the Net Present Value (NPV) of the outputs.
+Sintax "benefit_cost(rate,Input,Output)".
+Being
+    "rate"      is the interest rate.
+    "Input"     the input values.
+    "Output"    the output values.
+Notice that if there's not an input or  output value in a specific period,
+the input/output would be a zero for that period.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+benefit_cost(0.24,[0,300,500,150],[100,320,0,180]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
